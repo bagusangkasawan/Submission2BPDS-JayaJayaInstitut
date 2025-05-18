@@ -58,7 +58,6 @@ if st.button("🎯 Prediksi Status"):
     }
 
     new_data_df = pd.DataFrame(new_data_dict)
-    new_data_df = new_data_df.reindex(columns=top_5_features)
 
     try:
         prediction_numeric = model.predict(new_data_df)
