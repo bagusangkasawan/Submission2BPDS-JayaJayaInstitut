@@ -50,14 +50,15 @@ tuition_status = st.selectbox("💸 Status Pembayaran UKT", options=[1, 0], form
 st.markdown("### 🔍 Hasil Prediksi")
 if st.button("🎯 Prediksi Status"):
     new_data_dict = {
-        'Curricular_units_1st_sem_approved': [cu1_approved],
-        'Curricular_units_1st_sem_grade': [cu1_grade],
         'Curricular_units_2nd_sem_approved': [cu2_approved],
-        'Curricular_units_2nd_sem_grade': [cu2_grade],
+        'Curricular_units_1st_sem_approved': [cu1_approved],
+        'Curricular_units_2st_sem_grade': [cu2_grade],
+        'Curricular_units_1nd_sem_grade': [cu1_grade],
         'Tuition_fees_up_to_date': [tuition_status]
     }
 
     new_data_df = pd.DataFrame(new_data_dict)
+    new_data_df = new_data_df.reindex(columns=top_5_features.index, fill_value=0)
 
     try:
         prediction_numeric = model.predict(new_data_df)
