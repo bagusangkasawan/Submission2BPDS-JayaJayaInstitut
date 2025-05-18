@@ -16,7 +16,7 @@ def load_model_from_url(url):
         st.error(f"❌ Gagal memuat model: {e}")
         return None
 
-model_url = "https://raw.githubusercontent.com/ryanjiroo/dropout_classification/main/rf_model.pkl"
+model_url = "https://raw.githubusercontent.com/bagusangkasawan/Submission2BPDS-JayaJayaInstitut/main/rf_model.pkl"
 model = load_model_from_url(model_url)
 
 # --- Fitur yang digunakan saat training ---
