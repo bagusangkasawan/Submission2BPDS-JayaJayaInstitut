@@ -19,15 +19,6 @@ def load_model_from_url(url):
 model_url = "https://raw.githubusercontent.com/bagusangkasawan/Submission2BPDS-JayaJayaInstitut/main/rf_model.pkl"
 model = load_model_from_url(model_url)
 
-# --- Fitur yang digunakan saat training ---
-top_5_features = [
-    'Curricular_units_2nd_sem_approved',
-    'Curricular_units_1st_sem_approved',
-    'Curricular_units_2nd_sem_grade',
-    'Curricular_units_1st_sem_grade',
-    'Tuition_fees_up_to_date'
-]
-
 # --- UI Aplikasi ---
 st.set_page_config(page_title="Prediksi Status Mahasiswa", page_icon="🎓")
 st.title("🎓 Prediksi Status Mahasiswa")
@@ -49,7 +40,7 @@ tuition_status = st.selectbox("💸 Status Pembayaran UKT", options=[1, 0], form
 # --- Prediksi ---
 st.markdown("### 🔍 Hasil Prediksi")
 if st.button("🎯 Prediksi Status"):
-    new_data_dict = {
+    input_data_dict = {
         'Curricular_units_2nd_sem_approved': [cu2_approved],
         'Curricular_units_1st_sem_approved': [cu1_approved],
         'Curricular_units_2st_sem_grade': [cu2_grade],
@@ -57,11 +48,10 @@ if st.button("🎯 Prediksi Status"):
         'Tuition_fees_up_to_date': [tuition_status]
     }
 
-    new_data_df = pd.DataFrame(new_data_dict)
-    new_data_df = new_data_df.reindex(columns=top_5_features.index, fill_value=0)
+    input_data_df = pd.DataFrame(input_data_dict)
 
     try:
-        prediction_numeric = model.predict(new_data_df)
+        prediction_numeric = model.predict(input_data_df)
         status_map = {0: "Enrolled", 1: "Dropout", 2: "Graduate"}
         status_color = {"Graduate": "green", "Dropout": "red", "Enrolled": "blue"}
         predicted_status = status_map.get(prediction_numeric[0], "Unknown")
