@@ -43,8 +43,8 @@ if st.button("🎯 Prediksi Status"):
     input_data_dict = {
         'Curricular_units_2nd_sem_approved': [cu2_approved],
         'Curricular_units_1st_sem_approved': [cu1_approved],
-        'Curricular_units_2st_sem_grade': [cu2_grade],
-        'Curricular_units_1nd_sem_grade': [cu1_grade],
+        'Curricular_units_2nd_sem_grade': [cu2_grade],
+        'Curricular_units_1st_sem_grade': [cu1_grade],
         'Tuition_fees_up_to_date': [tuition_status]
     }
 
