@@ -5,6 +5,7 @@ import urllib.request
 import io
 
 # --- Load model dari GitHub ---
+st.set_page_config(page_title="Prediksi Status Mahasiswa", page_icon="🎓")
 @st.cache_resource
 def load_model_from_url(url):
     try:
@@ -20,7 +21,6 @@ model_url = "https://raw.githubusercontent.com/bagusangkasawan/Submission2BPDS-J
 model = load_model_from_url(model_url)
 
 # --- UI Aplikasi ---
-st.set_page_config(page_title="Prediksi Status Mahasiswa", page_icon="🎓")
 st.title("🎓 Prediksi Status Mahasiswa")
 st.markdown("Masukkan data berikut untuk mengetahui apakah mahasiswa akan **lulus**, **dropout**, atau masih **terdaftar**.")
 
