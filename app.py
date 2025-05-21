@@ -7,18 +7,17 @@ import io
 # --- Load model dari GitHub ---
 st.set_page_config(page_title="Prediksi Status Mahasiswa", page_icon="🎓")
 @st.cache_resource
-def load_model_from_url(url):
+def load_model_from_local(filepath):
     try:
-        response = urllib.request.urlopen(url)
-        model_file = io.BytesIO(response.read())
-        model = pickle.load(model_file)
+        with open(filepath, "rb") as file:
+            model = pickle.load(file)
         return model
     except Exception as e:
         st.error(f"❌ Gagal memuat model: {e}")
         return None
 
-model_url = "https://raw.githubusercontent.com/bagusangkasawan/Submission2BPDS-JayaJayaInstitut/main/rf_model.pkl"
-model = load_model_from_url(model_url)
+model_path = "rf_model.pkl"
+model = load_model_from_local(model_path)
 
 # --- UI Aplikasi ---
 st.title("🎓 Prediksi Status Mahasiswa")
